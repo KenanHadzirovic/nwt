@@ -1,5 +1,7 @@
 package com.nwt.users.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,13 +12,13 @@ public class Workspace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "password", nullable = false, length = 500)
+    @Column(name = "description", length = 500)
     private String description;
 
-    @Column(name = "firstName", nullable = false)
+    @Column(name = "isDeleted", nullable = false)
     private boolean isDeleted;
 
     @Column(name = "createdDate", nullable = false)
@@ -27,6 +29,7 @@ public class Workspace {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ownerId")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User owner;
 
     public Long getId() {
