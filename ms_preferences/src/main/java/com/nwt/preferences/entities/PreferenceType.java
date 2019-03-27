@@ -8,17 +8,29 @@ public class PreferenceType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long preferenceTypEId;
+    private Long preferenceTypeId;
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    public Long getPreferenceTypEId() {
-        return preferenceTypEId;
+    public PreferenceType()
+    {
+        this.preferenceTypeId = (long)0;
+        this.name = "";
     }
 
-    public void setPreferenceTypEId(Long preferenceTypEId) {
-        this.preferenceTypEId = preferenceTypEId;
+    public PreferenceType(Long preferenceTypeId, String preferenceTypeName)
+    {
+        this.preferenceTypeId = preferenceTypeId;
+        this.name = preferenceTypeName;
+    }
+
+    public Long getPreferenceTypeId() {
+        return preferenceTypeId;
+    }
+
+    public void setPreferenceTypeId(Long preferenceTypeId) {
+        this.preferenceTypeId = preferenceTypeId;
     }
 
     public String getName() {
