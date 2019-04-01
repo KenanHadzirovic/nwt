@@ -31,7 +31,7 @@ public class PreferenceController {
         return new ResponseEntity<List<Preference>>(result, HttpStatus.OK);
     }
 
-    @RequestMapping("initialize")
+    @RequestMapping(value="initialize", method = RequestMethod.GET)
     public boolean initializeData()
     {
         InitializeData();
@@ -43,7 +43,7 @@ public class PreferenceController {
         System.out.println("Initializing data");
 
         preferenceTypeRepository.save(new PreferenceType((long)1, "Background Color"));
-        preferenceTypeRepository.save(new PreferenceType((long)1, "Font Size"));
+        preferenceTypeRepository.save(new PreferenceType((long)2, "Font Size"));
 
         Preference p = new Preference((long)1, "true", (long)1, (long)2 );
         preferenceRepository.save(p);

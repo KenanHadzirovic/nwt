@@ -33,7 +33,7 @@ public class Preference {
         this.preferenceId = preferenceId;
         this.value = value;
         this.userId = userId;
-        this.preferenceId = preferenceType;
+        this.preferenceType = preferenceType;
     }
 
     public Long getUserId() {
