@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -27,7 +28,7 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/workspace/{workspaceId}")
     public ResponseEntity create(@PathVariable Long workspaceId, @RequestBody Post post) throws ParseException {
-        post.setId(null);
+        post.setId(post.getId());
 
         post.setPostType(workspaceId);
         post.setWorkspace(workspaceId);
@@ -50,6 +51,13 @@ public class PostController {
         }
 
         return new ResponseEntity<>(result.getId(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> geTAll()
+    {
+        List<Post> result = postRepository.findAll();
+        return new ResponseEntity<List<Post>>(result, HttpStatus.OK);
     }
 
    /* @RequestMapping(method = RequestMethod.PUT, value = "/{workspaceId}")

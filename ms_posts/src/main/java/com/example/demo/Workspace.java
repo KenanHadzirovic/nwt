@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -100,8 +102,11 @@ public class Workspace {
 		return modifiedDate;
 	}
 	
-	
-	
+	public Workspace(Long workspaceId)
+	{
+		this.setId(workspaceId);
+	}
+
 	 public String getOwner() {
 	        return ownerid;
 	    }
@@ -109,5 +114,13 @@ public class Workspace {
 	    public void setOwner(String ownerid) {
 	        this.ownerid = ownerid;
 	    }
+
+	public Workspace()
+	{
+		this.setId((long)0);
+		this.createdDate = this.modifiedDate = new java.sql.Date(Calendar.getInstance().getTime().getTime());;
+		this.description = this.title = "";
+		this.isDeleted = false;
+	}
 
 }

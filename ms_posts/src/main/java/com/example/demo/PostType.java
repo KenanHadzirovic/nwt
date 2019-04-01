@@ -17,25 +17,35 @@ public class PostType {
 	@Column(name = "posttypename", nullable = false, length = 20)
 	private String posttypename;
 	
-	  @OneToMany(
-	            mappedBy = "posttype_id"
-	    )
+	@OneToMany(
+		mappedBy = "posttype_id"
+	)
 	  
 	  
-	  public String getPostTypeName() {
+	public String getPostTypeName() {
 	        return posttypename;
 	  }
 
-	  public void setPostTypeName(String posttypename) {
+	public void setPostTypeName(String posttypename) {
 	        this.posttypename = posttypename;
       }
 	  
-	  public Long getId() {
+	public Long getId() {
 			return id;
 		}
 
-		public void setId(Long id) {
+	public void setId(Long id) {
 			this.id = id;
 		}
-	    
+
+	public PostType()
+	{
+		this.setId((long)0);
+		this.setPostTypeName("");
+	}
+
+	public PostType(Long postTypeId)
+	{
+		this.setId(postTypeId);
+	}
 }

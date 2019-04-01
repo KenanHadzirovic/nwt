@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.xml.ws.Response;
 
 @RestController
 @RequestMapping("/api/posttype")
@@ -31,6 +34,13 @@ public class PostTypeController {
         PostType result = posttypeRepository.save(postType);
        
         return new ResponseEntity<>(result.getId(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<PostType>> geTAll()
+    {
+        List<PostType> result = posttypeRepository.findAll();
+        return new ResponseEntity<List<PostType>>(result, HttpStatus.OK);
     }
     
    /* @RequestMapping(method = RequestMethod.DELETE, value = "/{name}")

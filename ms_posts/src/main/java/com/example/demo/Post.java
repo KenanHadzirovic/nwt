@@ -92,11 +92,11 @@ public class Post {
 	    }
 
 	    public void setWorkspace(Long workspaceId) {
-	        this.workspace.setId(workspaceId);
+	        this.workspace = new Workspace(workspaceId);
 	    }
 	    
 	    public void setPostType(Long posttypeId) {
-	        this.posttype.setId(posttypeId);
+	        this.posttype = new PostType(posttypeId);
 	    }
 	    
 	/*    public void addWorkspace(Workspace workspace) {
