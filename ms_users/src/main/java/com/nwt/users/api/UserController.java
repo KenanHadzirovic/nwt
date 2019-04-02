@@ -52,8 +52,7 @@ public class UserController {
         dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
         SimpleDateFormat dateFormatLocal = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
 
-        user.setCreatedDate(dateFormatLocal.parse( dateFormatGmt.format(new Date())));
-
+        user.setCreatedDate(dateFormatLocal.parse(dateFormatGmt.format(new Date())));
 
         User result = userRepository.save(user);
 

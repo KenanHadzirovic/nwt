@@ -3,6 +3,8 @@ package com.nwt.users.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -12,9 +14,13 @@ public class Workspace {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Username is a required field.")
+    @Size(min = 1, max = 50, message = "Title Name must be between 1 and 50 characters.")
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
+    @NotNull(message = "Username is a required field.")
+    @Size(min = 1, max = 50, message = "Description can be up to 500 characters.")
     @Column(name = "description", length = 500)
     private String description;
 

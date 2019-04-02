@@ -3,6 +3,8 @@ package com.nwt.users.entities;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,18 +16,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Username is a required field.")
+    @Size(min = 1, max = 20, message = "Username must be between 1 and 20 characters.")
     @Column(name = "username", nullable = false, length = 20)
     private String username;
 
+    @NotNull(message = "Password is a required field.")
+    @Size(min = 1, max = 20, message = "Password must be between 1 and 30 characters.")
     @Column(name = "password", nullable = false, length = 30)
     private String password;
 
+    @NotNull(message = "First Name is a required field.")
+    @Size(min = 1, max = 20, message = "First Name must be between 1 and 50 characters.")
     @Column(name = "firstName", nullable = false, length = 50)
     private String firstName;
 
     @Column(name = "middleName", length = 50)
+    @Size(max = 20, message = "Middle Name can be up to 20 characters.")
     private String middleName;
 
+    @NotNull(message = "Last Name is a required field.")
+    @Size(min = 1, max = 50, message = "First Name must be between 1 and 50 characters.")
     @Column(name = "lastName", nullable = false, length = 50)
     private String lastName;
 
