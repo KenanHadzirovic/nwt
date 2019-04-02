@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Workspace {
@@ -22,10 +24,14 @@ public class Workspace {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	//@NotNull(message = "Title is a required field")
+	//@Size(min = 1, max = 60, message = "Title cannot be longer than 60 characters")
 	@Column(name = "title", nullable = false, length = 20)
 	private String title;
-
-	@Column(name = "description", nullable = false, length = 20)
+	
+	//@NotNull(message = "Description is a required field")
+	//@Size(min = 10, max = 100, message = "Description cannot be longer than 100 characters")
+	@Column(name = "description", nullable = false, length = 100)
 	private String description;
 	
 	@Column(name = "isDeleted", nullable = false, length = 20)

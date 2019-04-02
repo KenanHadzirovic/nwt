@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.xml.ws.Response;
 
@@ -32,7 +33,7 @@ public class PostTypeController {
         postType.setPostTypeName(name);
         
         PostType result = posttypeRepository.save(postType);
-       
+      
         return new ResponseEntity<>(result.getId(), HttpStatus.OK);
     }
 
