@@ -19,6 +19,12 @@ public class PreferenceType {
         this.name = "";
     }
 
+    public PreferenceType(Long preferenceTypeId)
+    {
+        this.preferenceTypeId = preferenceTypeId;
+        this.name = "";
+    }
+
     public PreferenceType(Long preferenceTypeId, String preferenceTypeName)
     {
         this.preferenceTypeId = preferenceTypeId;

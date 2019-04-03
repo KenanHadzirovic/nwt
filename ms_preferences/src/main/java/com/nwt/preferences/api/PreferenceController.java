@@ -7,11 +7,11 @@ import com.nwt.preferences.repository.interfaces.PreferenceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/preference")
@@ -29,6 +29,47 @@ public class PreferenceController {
         List<Preference> result = preferenceRepository.findAll();
 
         return new ResponseEntity<List<Preference>>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public ResponseEntity<Preference> getById(@PathVariable Long id){
+        Optional<Preference> result = preferenceRepository.findById(id);
+
+        if(result == null || !result.isPresent())
+        {
+            new ResponseEntity<>("Preference not found by provided id", HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<Preference>(result.get(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "")
+    public ResponseEntity create(@RequestBody Preference preference) throws ParseException {
+
+        Preference result;
+        if(preference.getPreferenceId() != null)
+        {
+            if(!preferenceRepository.findById(preference.getPreferenceId()).isPresent())
+            {
+                preference.setPreferenceId(null);
+            }
+        }
+
+        result = preferenceRepository.save(preference);
+
+        if (result == null) {
+            return new ResponseEntity<>("Unable to save the user.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return new ResponseEntity<>(result.getPreferenceId(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        preferenceRepository.deleteById(id);
+
+
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
     @RequestMapping(value="initialize", method = RequestMethod.GET)

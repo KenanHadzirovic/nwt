@@ -3,6 +3,7 @@ package com.nwt.preferences.entities;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,23 +18,26 @@ public class Preference {
     @Column(name = "value", nullable = false, length = 50)
     private String value;
 
+    @NotNull(message = "UserId can't be null")
     @Column(name = "userId", nullable = false)
     private Long userId;
 
-    @Column(name = "preferenceType", nullable = false)
-    private Long preferenceType;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "preference_type", referencedColumnName = "preferenceTypeId")
+    private PreferenceType preferenceType;
 
     public Preference()
     {
-        this.preferenceId = this.userId = this.preferenceType = (long)0;
+        this.preferenceId = this.userId = (long)0;
         this.value = "";
+        this.preferenceType = new PreferenceType((long)0);
     }
 
     public Preference(Long preferenceId, String value, Long userId, Long preferenceType){
         this.preferenceId = preferenceId;
         this.value = value;
         this.userId = userId;
-        this.preferenceType = preferenceType;
+        this.preferenceType = new PreferenceType(preferenceType);
     }
 
     public Long getUserId() {
@@ -60,11 +64,13 @@ public class Preference {
         this.preferenceId = preferenceId;
     }
 
-    public Long getPreferenceType() {
+    public PreferenceType getPreferenceType() {
         return preferenceType;
     }
 
-    public void setPreferenceType(Long preferenceType) {
+    public void setPreferenceType(PreferenceType preferenceType) {
         this.preferenceType = preferenceType;
     }
+
+    public void setPreferenceTypeById(Long preferenceTypeId) { this.preferenceType = new PreferenceType(preferenceTypeId); }
 }
