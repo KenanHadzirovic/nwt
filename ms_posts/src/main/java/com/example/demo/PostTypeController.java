@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.xml.ws.Response;
 
 @RestController
 @RequestMapping("/api/posttype")

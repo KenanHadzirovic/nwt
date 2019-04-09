@@ -36,7 +36,9 @@ public class Post {
 
 	    @Column(name = "modifiedDate", nullable = true)
 	    private Date modifiedDate;
-	    
+
+		@Column(name = "isDeleted", nullable = false, length = 100)
+		private boolean isDeleted;
 	 //   private List<PostType> posttypelist = new ArrayList<>();
 	 //   private List<Workspace> workspacelist = new ArrayList<>();
 
@@ -60,6 +62,8 @@ public class Post {
 	    public String getTitle() {
 	        return title;
 	    }
+
+
 
 	    public void setTitle(String title) {
 	        this.title = title;
@@ -98,6 +102,14 @@ public class Post {
 	    public void setPostType(Long posttypeId) {
 	        this.posttype = new PostType(posttypeId);
 	    }
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		isDeleted = deleted;
+	}
 	    
 	/*    public void addWorkspace(Workspace workspace) {
 	        workspacelist.add(workspace);

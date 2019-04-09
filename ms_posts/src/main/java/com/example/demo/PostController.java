@@ -32,6 +32,7 @@ public class PostController {
 
         post.setPostType(workspaceId);
         post.setWorkspace(workspaceId);
+        post.setDeleted(false);
 
         SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
         dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));

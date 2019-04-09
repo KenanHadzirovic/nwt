@@ -1,5 +1,6 @@
 package com.nwt.users.api;
 
+import com.nwt.users.bll.interfaces.WorkspaceService;
 import com.nwt.users.entities.User;
 import com.nwt.users.entities.Workspace;
 import com.nwt.users.repository.interfaces.UserRepository;
@@ -26,6 +27,9 @@ public class WorkspaceController {
 
     @Autowired
     WorkspaceRepository workspaceRepository;
+
+    @Autowired
+    WorkspaceService workspaceService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/owner/{ownerId}")
     public ResponseEntity create(@PathVariable Long ownerId, @RequestBody Workspace workspace) throws ParseException {
@@ -74,24 +78,9 @@ public class WorkspaceController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{workspaceId}")
-    public ResponseEntity update(@PathVariable Long workspaceId) throws ParseException {
-        Optional<Workspace> optDbWorkspace = workspaceRepository.findById(workspaceId);
+    public ResponseEntity delete(@PathVariable Long workspaceId) throws Exception {
 
-        if (!optDbWorkspace.isPresent()) {
-            return new ResponseEntity<>("Workspace not found by provided id", HttpStatus.NOT_FOUND);
-        }
-
-        Workspace db = optDbWorkspace.get();
-
-        db.setDeleted(true);
-
-        SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
-        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
-        SimpleDateFormat dateFormatLocal = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
-
-        db.setModifiedDate(dateFormatLocal.parse( dateFormatGmt.format(new Date())));
-
-        workspaceRepository.save(db);
+        workspaceService.remove(workspaceId);
 
         return new ResponseEntity<>(workspaceId, HttpStatus.OK);
     }
