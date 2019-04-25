@@ -15,4 +15,7 @@ public interface IPostRepository extends JpaRepository<Post, Long> {
     @Transactional
     @Query("UPDATE Post p SET p.isDeleted = 1 WHERE p.workspace.id = ?1")
     void removeByWorkspaceId(Long workspaceId);
+    
+    @Query("SELECT p FROM Post p where workspace.id= ?1")
+    List<Post> getPostsByWorkspaceId(Long workspaceId);
 }

@@ -43,6 +43,25 @@ public class PostTypeController {
         return new ResponseEntity<List<PostType>>(result, HttpStatus.OK);
     }
     
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public ResponseEntity delete(@PathVariable Long id) throws ParseException {
+    
+        List<PostType> result = posttypeRepository.findAll();
+     
+        for (PostType p : result) {
+        	if(p.getId()==id)
+        	{
+                posttypeRepository.deleteById(id);
+        	}
+        	else 
+        	{
+                return new ResponseEntity<>("Post type with that id does not exist.", HttpStatus.NOT_FOUND);
+        	}
+        }
+       
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+    
    /* @RequestMapping(method = RequestMethod.DELETE, value = "/{name}")
     public ResponseEntity delete(@PathVariable String name, @RequestBody PostType postType) throws ParseException {
         postType.setId(null);

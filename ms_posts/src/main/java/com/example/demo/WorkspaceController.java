@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -14,11 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("api/workspace")
+@RequestMapping("api/workspaceposts")
 public class WorkspaceController {
 
+		@Autowired
+		private RestTemplate restTemplate;
+	
 	 	@Autowired
 	    IPostRepository postRepository;
 
@@ -44,6 +49,42 @@ public class WorkspaceController {
 	        }
 
 	        return new ResponseEntity<>(result.getId(), HttpStatus.OK);
+	    }
+	    
+	    
+	    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	    public ResponseEntity get(@PathVariable Long id) throws ParseException {
+	        
+	    	List<Post> result = postRepository.getPostsByWorkspaceId(id);
+	    	return new ResponseEntity<>(result, HttpStatus.OK);
+
+	    }
+	    
+	    @RequestMapping(method = RequestMethod.GET, value = "")
+	    public ResponseEntity get() throws ParseException {
+	        
+	    	List<Workspace> result = workspaceRepository.getWorkspaces();
+	    	return new ResponseEntity<>(result, HttpStatus.OK);
+
+	    }
+	    
+	    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	    public ResponseEntity delete(@PathVariable Long id) throws ParseException {
+	    
+	        List<Workspace> result = workspaceRepository.findAll();
+	        
+	        for (Workspace work : result) {
+	        	if(work.getId()==id)
+	        	{
+	                workspaceRepository.deleteById(id);
+	        	}
+	        	else 
+	        	{
+	                return new ResponseEntity<>("Workspace with that id does not exist.", HttpStatus.NOT_FOUND);
+	        	}
+	        }
+	       
+	        return new ResponseEntity<>(id, HttpStatus.OK);
 	    }
 /*
 	    @RequestMapping(method = RequestMethod.PUT, value = "/{workspaceId}")

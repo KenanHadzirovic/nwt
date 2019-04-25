@@ -43,6 +43,13 @@ public class PreferenceController {
         return new ResponseEntity<Preference>(result.get(), HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/owner/{ownerId}")
+    public ResponseEntity<List<Preference>> getPreferencesByUserId(@PathVariable Long ownerId) {
+        List<Preference> result = preferenceRepository.getPreferencesByOwnerId(ownerId);
+
+        return new ResponseEntity<List<Preference>>(result, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "")
     public ResponseEntity create(@RequestBody Preference preference) throws ParseException {
 
