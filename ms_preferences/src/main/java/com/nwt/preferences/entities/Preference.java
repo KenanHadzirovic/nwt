@@ -1,5 +1,6 @@
 package com.nwt.preferences.entities;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
@@ -15,8 +16,11 @@ public class Preference {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long preferenceId;
 
-    @Column(name = "value", nullable = false, length = 50)
+    @Column(name = "value", nullable = true, length = 50)
     private String value;
+
+    @Column(name = "boolValue", nullable = true)
+    private Boolean boolValue;
 
     @NotNull(message = "UserId can't be null")
     @Column(name = "userId", nullable = false)
@@ -30,13 +34,15 @@ public class Preference {
     {
         this.preferenceId = this.userId = (long)0;
         this.value = "";
+        this.boolValue = false;
         this.preferenceType = new PreferenceType((long)0);
     }
 
-    public Preference(Long preferenceId, String value, Long userId, Long preferenceType){
+    public Preference(Long preferenceId, String value, Boolean boolValue, Long userId, Long preferenceType){
         this.preferenceId = preferenceId;
         this.value = value;
         this.userId = userId;
+        this.boolValue = boolValue;
         this.preferenceType = new PreferenceType(preferenceType);
     }
 
@@ -73,4 +79,12 @@ public class Preference {
     }
 
     public void setPreferenceTypeById(Long preferenceTypeId) { this.preferenceType = new PreferenceType(preferenceTypeId); }
+
+    public Boolean getBoolValue() {
+        return boolValue;
+    }
+
+    public void setBoolValue(Boolean boolValue) {
+        this.boolValue = boolValue;
+    }
 }

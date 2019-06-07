@@ -3,12 +3,14 @@ package com.nwt.preferences.api;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 public class GenericExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)

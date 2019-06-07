@@ -9,13 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/api/post")
 
 public class PostController {
@@ -28,7 +25,8 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/workspace/{workspaceId}")
     public ResponseEntity create(@PathVariable Long workspaceId, @RequestBody Post post) throws ParseException {
-        post.setId(post.getId());
+
+        //post.setId(postRepository.getPostsByWorkspaceId(workspaceId).size()+1);
 
         post.setPostType(workspaceId);
         post.setWorkspace(workspaceId);

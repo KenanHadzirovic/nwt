@@ -1,0 +1,24 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="'/'">Pinboard</a>
+    <div class="navbar-expand mr-auto">
+      <ul class="navbar-nav" *ngIf="securityService.isAuthenticated()">
+        <li>
+            <button type="button" class="btn btn-success" (click)="openAddModal()">Add note</button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" [routerLink]="'workspace'" [routerLinkActive]="['active']">Workspace</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" [routerLink]="'options'" [routerLinkActive]="['active']">Options</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-expand ml-auto navbar-nav" *ngIf="securityService.isAuthenticated()">
+      <div class="navbar-nav">
+        <!-- <a class="nav-item nav-link" [routerLink]="'/'" (click)="logOut()">Logout {{ authService.userData.fullName }}</a> -->
+        <a class="nav-item nav-link" [routerLink]="'/'" (click)="logOut()">Logout</a>
+      </div>
+    </div>
+  </nav>
+</header>

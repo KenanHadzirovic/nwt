@@ -1,3 +1,10 @@
-<p>
-  options works!
-</p>
+<div class="options-panel">
+  <h2>Options</h2>
+  <div *ngFor="let option of options">
+    <app-option [option]="option"></app-option>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="cancel()">Cancel changes</button>
+    <button type="button" class="btn btn-success" (click)="saveChanges()">Save</button>
+  </div>
+</div>

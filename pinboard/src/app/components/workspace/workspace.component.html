@@ -1,3 +1,5 @@
-<p>
-  workspace works!
-</p>
+<div>
+  <div *ngFor="let post of posts">
+      <app-post [postColor]="postColor" [content]="post"></app-post>
+  </div>
+</div>

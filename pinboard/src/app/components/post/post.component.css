@@ -1,0 +1,32 @@
+.post {
+    padding: 10px;
+    margin: 20px;
+    display: inline-block;
+    width: auto;
+    height: auto;;
+    min-width: 240px;
+    min-height: 80px;
+    border-style: solid;
+    border-color: #e6e9ef;
+    border-width: 1px;
+    border-radius: 8px;
+    /* background-color:#eff2f7; */
+    float:left;
+}
+
+.title {
+    display: block;
+    padding-left: 5px;
+    font-size: 14pt;
+}
+
+.content {
+    display: block;
+    padding-left: 5px;
+    color: grey;
+}
+
+.separator {
+    display: block;
+    margin-top: 0px;
+}
