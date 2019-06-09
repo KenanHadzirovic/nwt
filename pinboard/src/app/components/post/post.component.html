@@ -1,6 +1,8 @@
 <div class="col-xs-4 post" [ngStyle]="{'background-color': postColor}">
     <div class="col-xs-4 title">
         <label>{{ content.title }}</label>
+        <fa name="trash" (click)="removePost()" class="icons trash"></fa>
+        <fa name="edit" (click)="openEditModal()" class="icons"></fa>
     </div>
     <hr class="separator">
     <div class="col-xs-4 content">

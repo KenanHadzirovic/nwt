@@ -84,7 +84,6 @@ public class PreferenceController {
     public ResponseEntity<String> delete(@PathVariable Long id){
         preferenceRepository.deleteById(id);
 
-
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 

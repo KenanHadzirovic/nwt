@@ -30,22 +30,10 @@ export class WorkspaceService {
       this.change.emit(this.posts);
     });
     return this.posts;
-  //   return [
-  //     { id: 1, title: "Test post", content: "Test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 2, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 3, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 4, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 5, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null},
-  //     { id: 6, title: "Second Test post", content: "Second test content", isDeleted: false, createdDate: null, modifiedDate: null}
-  //   ]
-  // }
+  }
+
+  public removePosts(id: number) {
+    this.posts.splice(this.posts.findIndex(x => x.id == id), 1);
+    this.change.emit(this.posts);
   }
 }

@@ -23,7 +23,7 @@ public class Post {
 
         @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int id;
+	    private Long id;
 
 	    @Column(name = "title", nullable = false, length = 20)
 	    private String title;
@@ -43,11 +43,11 @@ public class Post {
 	 //   private List<Workspace> workspacelist = new ArrayList<>();
 
  
-	    public int getId() {
+	    public Long getId() {
 	        return id;
 	    }
 
-	    public void setId(int id) {
+	    public void setId(Long id) {
 	        this.id = id;
 	    }
 

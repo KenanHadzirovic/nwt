@@ -30,3 +30,12 @@
     display: block;
     margin-top: 0px;
 }
+
+.icons {
+    cursor: pointer;
+    float: right;
+    padding: 5px;
+}
+.trash {
+    color: darkred;
+}

@@ -56,6 +56,13 @@ public class PostController {
         return new ResponseEntity<List<Post>>(result, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value="/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        postRepository.deleteById(id);
+
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
    /* @RequestMapping(method = RequestMethod.PUT, value = "/{workspaceId}")
     public ResponseEntity update(@PathVariable Long workspaceId, @RequestBody Workspace workspace) throws ParseException {
         Optional<Workspace> optDbWorkspace = workspaceRepository.findById(workspaceId);

@@ -16,6 +16,7 @@ export class AddNoteComponent implements OnInit {
 
   @Input() title: string = "";
   @Input() content: string = "";
+  @Input() id: number = 0;
 
   constructor(public activeModal: NgbActiveModal, private postService: PostService, private workspaceService: WorkspaceService) {}
 
@@ -24,7 +25,7 @@ export class AddNoteComponent implements OnInit {
 
   public addPost(){
     var post: Post = {
-      id: 0,
+      id: this.id,
       title: this.title,
       content: this.content,
       isDeleted: false,

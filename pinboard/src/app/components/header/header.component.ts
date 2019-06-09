@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   }
 
   openAddModal() {
-    const modalRef = this.modalService.open(AddNoteComponent);
-    modalRef.componentInstance.name = 'World';
+    this.modalService.open(AddNoteComponent);
   }
 }

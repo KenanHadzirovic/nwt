@@ -15,4 +15,8 @@ export class PostService {
   public addPost(post: Post) : Observable<any> {
     return this.http.post(environment.postServiceUrl + '/workspace/1', post);
   }
+
+  public removePost(id: number) {
+    this.http.delete(environment.postServiceUrl + '/' + id).subscribe();
+  }
 }

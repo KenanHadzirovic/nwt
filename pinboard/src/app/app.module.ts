@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,7 @@ import { OptionComponent } from './components/options/option/option.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    AngularFontAwesomeModule,
     NgbModule.forRoot()
   ],
   entryComponents: [
