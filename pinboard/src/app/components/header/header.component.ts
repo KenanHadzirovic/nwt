@@ -3,6 +3,8 @@ import { SecurityService } from 'src/app/services/security/security.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddNoteComponent } from '../modals/add-note/add-note/add-note.component';
+import { WorkspaceService } from 'src/app/services/workspace/workspace.service';
+import { Workspace } from 'src/app/models/workspace';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +12,11 @@ import { AddNoteComponent } from '../modals/add-note/add-note/add-note.component
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private securityService: SecurityService, private router: Router, private modalService: NgbModal) { }
+  workspaces: Workspace[];
+  constructor(private securityService: SecurityService, private router: Router, private modalService: NgbModal, private workspaceService: WorkspaceService) { }
 
   ngOnInit() {
+    this.workspaces = this.workspaceService.getWorkspaces();
   }
 
   logOut = () => {

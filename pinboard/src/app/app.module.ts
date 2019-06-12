@@ -14,6 +14,7 @@ import { PostComponent } from './components/post/post.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddNoteComponent } from './components/modals/add-note/add-note/add-note.component';
 import { OptionComponent } from './components/options/option/option.component';
+import { WorkspacePanelComponent } from './components/options/workspace-panel/workspace-panel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OptionComponent } from './components/options/option/option.component';
     PostComponent,
     HeaderComponent,
     AddNoteComponent,
-    OptionComponent
+    OptionComponent,
+    WorkspacePanelComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
   public content: Post;
 
   @Input()
-  public postColor: string;
+  public style: any;
 
   constructor(private modalService: NgbModal, private postService: PostService, private workspaceService: WorkspaceService) { }
 

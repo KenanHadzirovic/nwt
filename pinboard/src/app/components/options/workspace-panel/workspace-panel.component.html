@@ -1,0 +1,13 @@
+<div>
+  <hr>
+  <div class="workspace-item" *ngFor="let workspace of workspaces; let i = index">
+    <span class="workspace-item-title">{{ workspace.title }}</span>
+    <button class="btn btn-danger" (click)="removeWorkspace(i)">Remove</button>
+    <hr>
+  </div>
+  <div>
+    <input type="text" [(ngModel)]="newWorkspace.title" placeholder="Title">
+    <input type="text" [(ngModel)]="newWorkspace.description" placeholder="Description">
+    <button class="btn btn-success" (click)="addNew()">Add workspace</button> 
+  </div>
+</div>

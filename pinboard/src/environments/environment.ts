@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   postServiceUrl: 'http://localhost:8082/api/post',
+  workspaceServiceUrl: 'http://localhost:8082/api/workspaceposts',
   userServiceUrl: 'http://localhost:8081/api/user',
   authServiceUrl: 'http://localhost:8084/auth/',
   preferenceServiceUrl: 'http://localhost:8083/api/preference'

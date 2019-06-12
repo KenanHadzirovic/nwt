@@ -13,7 +13,7 @@ import { PreferencesService } from 'src/app/services/preferences/preferences.ser
 export class WorkspaceComponent implements OnInit {
   posts: Post[];
   workspaceId: number;
-  postColor: string;
+  style: any = {};
   
   constructor(private userService: UserService, 
               private workspaceService: WorkspaceService, 
@@ -24,11 +24,14 @@ export class WorkspaceComponent implements OnInit {
     //this.securityService.getToken();
     this.workspaceService.getPosts();
 
-    this.workspaceService.change.subscribe(posts => {
+    this.workspaceService.postchange.subscribe(posts => {
       this.posts = posts;
     });
     this.preferencesService.getPreferences().subscribe(preferences => {
-      this.postColor = preferences.find(x => x.preferenceType.name == 'Color').value;
+      this.style = { postColor: '', fontColor: '', fontSize: ''};
+      this.style.postColor = preferences.find(x => x.preferenceType.name == 'Color').value;
+      this.style.fontColor = preferences.find(x => x.preferenceType.name == 'Font Color').value;
+      this.style.fontSize = preferences.find(x => x.preferenceType.name == 'Font Size').value;
     })
   }
 

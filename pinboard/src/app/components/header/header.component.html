@@ -6,8 +6,11 @@
         <li>
             <button type="button" class="btn btn-success" (click)="openAddModal()">Add note</button>
         </li>
-        <li class="nav-item">
-          <a class="nav-item nav-link" [routerLink]="'workspace'" [routerLinkActive]="['active']">Workspace</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [routerLink]="'workspace'" [routerLinkActive]="['active']">Workspace</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a *ngFor="let workspace of workspaces" class="dropdown-item" [routerLink]="'workspace/'">{{workspace.name}}</a>
+            </div>
         </li>
         <li class="nav-item">
           <a class="nav-item nav-link" [routerLink]="'options'" [routerLinkActive]="['active']">Options</a>

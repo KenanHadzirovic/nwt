@@ -1,5 +1,5 @@
 <div>
   <div *ngFor="let post of posts">
-      <app-post [postColor]="postColor" [content]="post" (postDeleted)="getPosts()"></app-post>
+      <app-post [style]="style" [content]="post" (postDeleted)="getPosts()"></app-post>
   </div>
 </div>
